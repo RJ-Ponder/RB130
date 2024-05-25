@@ -10,7 +10,7 @@ end
 # The correct type of argument must be used below
 base8_proc = method(:convert_to_base_8).to_proc
 
-# The Object#method turns the method into a method object, which is turned into a Proc
+# The Object#method turns the method into a Method object, which is turned into a Proc
 
 # def convert_to_base_8(n)
 #   n.to_s(8).to_i

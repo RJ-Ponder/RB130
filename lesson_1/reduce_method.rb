@@ -52,3 +52,20 @@ p reduce(array, 10) { |acc, num| acc + num }                # => 25
 # p reduce(array) { |acc, num| acc + num if num.odd? }        # => NoMethodError: undefined method `+' for nil:NilClass
 p reduce(['a', 'b', 'c']) { |acc, value| acc += value }     # => 'abc'
 p reduce([[1, 2], ['a', 'b']]) { |acc, value| acc + value } # => [1, 2, 'a', 'b']
+
+# Revisiting this problem while studying for the exam, I came up with this:
+def reduce(array, acc = (acc_not_passed = true; array[0]))
+  array = array[1..-1] if acc_not_passed
+
+  array.each do |element|
+    acc = yield(acc, element)
+  end
+
+  acc
+end
+
+# The argument idiom lets you know if an optional argument was passed in.
+# This is to prevent the edge case where an argument was passed in that 
+# was the same as your default value (thus shrinking the array)
+# in the parenthesis is just an expression and the last expression is the return value 
+# So to speak of the expression
